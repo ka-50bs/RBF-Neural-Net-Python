@@ -1,16 +1,17 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def predict_plot(y_test, y_pred, params):
+
+def predict_plot(y_test, y_pred, params, sup_title):
     N = len(params)
 
     plt.figure(figsize=(20, 20))
-
+    plt.suptitle(sup_title)
     for i in range(N):
         for j in range(N):
             if i == j:
                 plt.subplot(N, N, i * N + j + 1)
-                plt.title("Предсказание с помощью сетей")
+                plt.title("Корреляционный график")
                 plt.xlabel(params[i] + ' Тестовые')
                 plt.ylabel(params[i] + ' Предсказанные')
 
@@ -19,7 +20,7 @@ def predict_plot(y_test, y_pred, params):
                 plt.legend()
             else:
                 plt.subplot(N, N, i * N + j + 1)
-                plt.title("Предсказание с помощью сетей")
+                plt.title("Сравнительная карта параметров")
                 plt.xlabel(params[i])
                 plt.ylabel(params[j])
 
@@ -29,7 +30,7 @@ def predict_plot(y_test, y_pred, params):
     plt.show()
 
 
-def error_plot(y_test, y_pred, params):
+def error_plot(y_test, y_pred, params, sup_title):
     N = len(params)
 
     error = []
@@ -40,6 +41,7 @@ def error_plot(y_test, y_pred, params):
         error.append(buf_err)
 
     plt.figure(figsize=(20, 20))
+    plt.suptitle(sup_title)
 
     for i in range(N):
         plt.subplot(N, 2, i * 2 + 1)
