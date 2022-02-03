@@ -36,7 +36,6 @@ class PipeLine(object):
         for i in range(n):
             angles_pi[i] = (self.__angles_range[0] + k * i) * np.pi / 180
             angles[i] = self.__angles_range[0] + k * i
-
         self.__angles_array = angles
         self.__angles_pi_array = angles_pi
         return self
@@ -73,10 +72,11 @@ class PipeLine(object):
         return self
 
     def cutter(self, angles_f, angles_b):
+
         start_f = 0
         end_f = 0
         for i in range(len(self.__angles_array)):
-            while self.__angles_array[i] < angles_f[0]:
+            while self.__angles_array[i] <= angles_f[0]:
                 start_f = i
                 i = i + 1
 
@@ -86,7 +86,7 @@ class PipeLine(object):
         start_b = 0
         end_b = 0
         for i in range(len(self.__angles_array)):
-            while self.__angles_array[i] < angles_b[0]:
+            while self.__angles_array[i] <= angles_b[0]:
                 start_b = i
                 i = i + 1
 
@@ -96,6 +96,7 @@ class PipeLine(object):
 
         self.__x_forward = self.__x_edited[:, start_f:end_f + 1]
         self.__x_backward = self.__x_edited[:, start_b:end_b + 1]
+
         self.__x_forward_edited = np.copy(self.__x_forward)
         self.__x_backward_edited = np.copy(self.__x_backward)
         return self
