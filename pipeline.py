@@ -76,24 +76,25 @@ class PipeLine(object):
         start_f = 0
         end_f = 0
         for i in range(len(self.__angles_array)):
-            while self.__angles_array[i] <= angles_f[0]:
+            if self.__angles_array[i] <= angles_f[0]:
                 start_f = i
-                i = i + 1
 
-            while self.__angles_array[i] < angles_f[1]:
+            if self.__angles_array[i] <= angles_f[1]:
                 end_f = i
-                i = i + 1
+
         start_b = 0
         end_b = 0
         for i in range(len(self.__angles_array)):
-            while self.__angles_array[i] <= angles_b[0]:
+            if self.__angles_array[i] <= angles_b[0]:
                 start_b = i
                 i = i + 1
 
-            while self.__angles_array[i] < angles_b[1]:
+            if self.__angles_array[i] <= angles_b[1]:
                 end_b = i
                 i = i + 1
 
+        # print(self.__angles_array[start_f], self.__angles_array[end_f])
+        # print(self.__angles_array)
         self.__x_forward = self.__x_edited[:, start_f:end_f + 1]
         self.__x_backward = self.__x_edited[:, start_b:end_b + 1]
 
